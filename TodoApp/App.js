@@ -12,7 +12,7 @@ function App() {
   // When the application has loaded using the useEffect hook, then load the login page.
   useEffect(()=>{
     <Login />
-  });
+  }, []);
 
   return <SplashScreen />;
 }
