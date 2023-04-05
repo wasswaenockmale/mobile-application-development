@@ -5,10 +5,15 @@
  *
  * @format
  */
-import SplashScreen from './Components/SplashScreen';
-import React from 'react';
+import {SplashScreen, Login} from './Components/'
+import React, { useEffect } from 'react';
 
 function App() {
+  // When the application has loaded using the useEffect hook, then load the login page.
+  useEffect(()=>{
+    <Login />
+  });
+
   return <SplashScreen />;
 }
 
