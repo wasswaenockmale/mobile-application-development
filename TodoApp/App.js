@@ -1,4 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
+// import splashScreen from 'expo-splash-screen';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function App() {
