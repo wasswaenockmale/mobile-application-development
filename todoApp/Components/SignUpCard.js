@@ -4,16 +4,13 @@ import ImageView from './ImageView';
 const SignUpCard = ()=> {
     return(
         <View style={styles.container}>
-            {/* <View>
-                <ImageView imageURL={require('../assets/logo_1.png')} style={styles.img}/>
-            </View> */}
             <Text style={styles.sText}>Sign Up</Text>
             <TextInput style={styles.textInput} placeholder='email' placeholderTextColor='#fff'/>
             <TextInput style={styles.textInput} placeholder='name' placeholderTextColor='#fff'/>
             <TextInput style={styles.textInput} placeholder='number' placeholderTextColor='#fff'/>
             <TextInput style={styles.textInput} placeholder='password' placeholderTextColor='#fff'/>
             <TextInput style={styles.textInput} placeholder='confirm password' placeholderTextColor='#fff'/>
-            <Button title='create'/>
+            <Button title='create' onPress={()=>alert('clicked the create button.')}/>
         </View>
     );
 }

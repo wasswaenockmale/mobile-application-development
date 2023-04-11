@@ -1,10 +1,12 @@
-import { StyleSheet,View, Text, Pressable } from "react-native"
+import { StyleSheet,View, Text, Pressable } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-const LoginFooter = ()=>{
+const LoginFooter = (props)=>{
     return(
         <View>
             <Text style={{textAlign:'center',fontSize:12,color:'#fff'}}>If you don't have an account!</Text>
-            <Pressable style={styles.press} onPress={() => alert("Sign up button clicked")}>
+            <Pressable style={styles.press} onPress={()=> props.navigation.navigate('SignUp')}>
                 <Text style={styles.tpress}>Sign Up</Text>
             </Pressable>
         </View>
