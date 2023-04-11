@@ -2,10 +2,10 @@ import { View, StyleSheet} from "react-native";
 
 import LoginCard from './LoginCard';
 
-export default function Login(){
+export default function Login({navigation}){
     return(
         <View style={styles.container}>
-            <LoginCard/>
+            <LoginCard navigation={navigation}/>
         </View>
     )
 }
