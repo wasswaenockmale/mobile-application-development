@@ -1,5 +1,4 @@
 import {View, TextInput, StyleSheet, Button, Text} from 'react-native';
-import ImageView from './ImageView';
 
 const SignUpCard = ()=> {
     return(

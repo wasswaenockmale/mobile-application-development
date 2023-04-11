@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { StyleSheet, View, Text, Image, FlatList, Pressable, } from "react-native";
 import TaskCard from "./TaskCard";
-// import { createDrawerNavigator } from "@react-navigation/drawer";
-// const LeftDrawer = createDrawerNavigator();
+
 export default function DashBoard(){
 
     const [tasks, setTasks] = useState([]);

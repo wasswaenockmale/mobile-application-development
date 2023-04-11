@@ -1,6 +1,4 @@
 import { StyleSheet,View, Text, Pressable } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const LoginFooter = (props)=>{
     return(

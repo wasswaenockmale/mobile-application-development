@@ -1,12 +1,10 @@
-// import { Button, StyleSheet, Text, View } from 'react-native';
-// import SignUp from './Components/SignUp';
-// import DashBoard from './Components/DashBoard';
 import {useState, useEffect} from 'react';
 import SplashScreen from './Components/SplashScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './Components/Login';
 import SignUp from './Components/SignUp';
+import DashBoard from './Components/DashBoard';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,7 +24,7 @@ export default function App(){
         <Stack.Navigator>
           <Stack.Screen name="Login" component={Login}/>
           <Stack.Screen name="SignUp" component={SignUp}/>
-          <Stack.Screen name='Home' component={'DashBoard'}/>
+          <Stack.Screen name='Home' component={DashBoard}/>
         </Stack.Navigator>
       </NavigationContainer>
     )

@@ -1,4 +1,4 @@
-import {View, StyleSheet, Text, Image} from 'react-native';
+import {View, StyleSheet, Text} from 'react-native';
 import ImageView from './ImageView';
 
 const image = require('../assets/logo_1.png');
