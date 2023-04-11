@@ -1,7 +1,7 @@
 import {View, TextInput, StyleSheet, Button, Text} from 'react-native';
 import LoginFooter from './LoginFooter';
 
-const LoginCard = ()=>{
+const LoginCard = (props)=>{
     return(
         <View style={styles.container}>
             <Text style={styles.logText}>Login</Text>
