@@ -1,7 +1,6 @@
 import { View, StyleSheet} from "react-native";
 
 import LoginCard from './LoginCard';
-import SignUp from './SignUp';
 
 export default function Login(){
     return(
