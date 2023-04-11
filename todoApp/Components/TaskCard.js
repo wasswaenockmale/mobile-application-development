@@ -10,16 +10,14 @@ const TaskCard = (props)=>{
 
 const styles = StyleSheet.create({
     container:{
-        width:'100%',
-        backgroundColor:'white',
+        width:'95%',
+        backgroundColor:'#9bedff',
         borderRadius:5,
         margin:10
     },
-
     heading:{
         fontSize: 25,
     },
-
     cont:{
         fontSize:15
     }
