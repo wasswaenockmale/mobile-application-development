@@ -7,8 +7,8 @@ const LoginCard = (props)=>{
             <Text style={styles.logText}>Login</Text>
             <TextInput style={styles.textInput} placeholder="Enter email" placeholderTextColor='#fff'/>
             <TextInput style={styles.textInput} placeholder="Enter password" placeholderTextColor='#fff'/>
-            <Button title="Login" style={styles.btn}/>
-            <LoginFooter/>
+            <Button title="Login" style={styles.btn} onPress={()=>alert('Clicked the login button.')}/>
+            <LoginFooter navigation={props.navigation}/>
         </View>
     )
 }
