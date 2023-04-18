@@ -27,6 +27,7 @@ export default function App(){
           <Stack.Screen name='Home' component={DashBoard}/>
         </Stack.Navigator>
       </NavigationContainer>
+      // <DashBoard />
     )
   }else{
     return <SplashScreen />
