@@ -1,0 +1,49 @@
+
+// functional component
+function Name(props){
+    return(
+        <View>
+            <Text>{props.name}</Text>
+        </View>
+    )
+}
+
+class Name extends React.Component{
+    constructor(props){
+        super(props);
+        this.state={
+            count: 1,
+            name:'ketty',
+            school: 'ablestate',
+            isLoggedIn: false
+        }
+
+        this.handleLogIn = this.handleLogIn.bind(this);
+        this.handleLogOut = this.handleLogOut.bind(this);
+    }
+
+    handleLogIn(){
+        this.setState({isLoggedIn: true});
+    }
+    handleLogOut(){
+        this.setState({isLoggedOut: false});
+    }
+
+    render(){
+        const isLoggedIn = this.state.isLoggedIn;
+        let button;
+        if(isLoggedIn){
+            button = <>I love programming.</>
+        }else{
+            button = <>Programming can be boring.</>
+        }
+
+        return(
+            <View>
+                <Greeting isLoggedIn={isLoggedIn} />
+                {button};
+            </View>
+        )
+    }
+
+}
