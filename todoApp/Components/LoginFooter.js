@@ -4,7 +4,7 @@ const LoginFooter = (props)=>{
     return(
         <View>
             <Text style={{textAlign:'center',fontSize:12,color:'#fff'}}>If you don't have an account!</Text>
-            <Pressable style={styles.press} onPress={()=> props.navigation.navigate('SignUp')}>
+            <Pressable style={styles.press} onPress={()=> props.navigation.navigate('SignUp', {name: 'register'})}>
                 <Text style={styles.tpress}>Sign Up</Text>
             </Pressable>
         </View>
