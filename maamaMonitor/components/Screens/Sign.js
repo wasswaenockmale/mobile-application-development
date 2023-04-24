@@ -33,13 +33,13 @@ const Sign = (props) => {
                     </View> */}
                     <Btn Width="90%" textColor="white" bgColor="#4b6043" btnLabel="Sign up"/>
 
-                    <View>
+                    <View style={styles.forget}>
                         <Text>Already have an account ?</Text>
                         <TouchableOpacity onPress={()=> {
-                            alert("Registered");
+                            // alert("Registered");
                             props.navigation.navigate('Login')
                         }}>
-                            <Text>Login</Text>
+                            <Text style={{color:'green'}}> Login</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
         color:'white'
     },
     forget:{
+        flexDirection:'row',
 
     }
 })
