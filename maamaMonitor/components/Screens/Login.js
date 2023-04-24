@@ -8,7 +8,7 @@ import {
 
 
 import Background from '../helpers/background';
-import Field from '../helpers/login/Field'
+import Field from '../helpers/Field'
 import Btn from '../helpers/Btn';
 
 const windowWidth = Dimensions.get('screen').width;
