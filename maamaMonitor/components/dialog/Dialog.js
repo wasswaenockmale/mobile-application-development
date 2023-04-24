@@ -7,10 +7,9 @@ const Dialog = (props) => {
                 <View style={styles.alert}>
                     <Text style={styles.alertTitle}>Sorry!</Text>
                     <Text style={styles.alertMessage}>{props.displayText}</Text>
-                    {/* <Field placeholder="try it"/> */}
                 <View style={styles.alertButtonGroup}>
                     <View style={styles.alertButton}>
-                        <Button title="OK" onPress={() => props.toggleVisibility()} />
+                        <Button title="OK" onPress={props.Press} />
                     </View>
                 </View>
                 </View>
