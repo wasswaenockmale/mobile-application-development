@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     View,
     Text,
@@ -8,8 +8,20 @@ import {
 import Box from "../helpers/dashbord/Box";
 import InfoCard from "../helpers/dashbord/informationCard";
 import Background from "../helpers/background";
+import Dialog from "../dialog/Dialog";
 
 function Home(props){
+    const [isHospitalVisible, setIsHospitalVisible] = useState(false);
+    const [isAmbulanceVisible, setIsAmbulanceVisible] = useState(false);
+
+    const toggleHospitalVisibility = () => {
+        setIsHospitalVisible(!isHospitalVisible);
+    }
+
+    const toggleAmbulanceVisibility = () => {
+        setIsAmbulanceVisible(!isAmbulanceVisible);
+    }
+    
     return(
         <Background>
            <View style={styles.contain}>
@@ -19,8 +31,10 @@ function Home(props){
                         alert("Checking your health records");
                         props.navigation.navigate('History');
                     }}/>
-                    <Box text="Nearby health centers"/>
-                    <Box text="Ambulancies"/>
+                    <Box text="Nearby health centers" Press={() => toggleHospitalVisibility()}/>
+                    <Dialog isVisible={isHospitalVisible} displayText="We currently don't have any health service"/>
+                    <Box text="Ambulancies" Press={() => toggleAmbulanceVisibility()}/>
+                    <Dialog isVisible={isAmbulanceVisible} displayText="We currently don't have any Ambulance services"/>
                     <Box text="+"/>
                 </View>
                 <View style={styles.containInf}>
