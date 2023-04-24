@@ -7,7 +7,6 @@ const MaamaInfor = ()=>{
             <TextInput style={styles.textInput} placeholder="Age"/>
             <TextInput style={styles.textInput} placeholder="LNMP"/>
             <TextInput style={styles.textInput} placeholder="Next of kin"/>
-
             <Button title="Submit" color={'green'} style={{width: '50%'}}/>
         </View>
     )
