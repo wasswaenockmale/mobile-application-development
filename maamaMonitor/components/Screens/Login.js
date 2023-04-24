@@ -25,21 +25,29 @@ const Login = (props) => {
                     <Text>Login to your account</Text>
                     <Field placeholder="Email" keyboardType={"email-address"}/>
                     <Field placeholder="Password" secureTextEntry={true}/>
-                    <View style={styles.forget}>
-                        <Text>Forgot password ?</Text>
-                    </View>
+                    <TouchableOpacity
+                        style={
+                            {...styles.forget, 
+                                alignSelf:'flex-end', 
+                                marginRight:30, 
+                                marginBottom:10
+                            }}
+                            onPress={() => alert('set new password')}
+                        >
+                        <Text style={{color:'green'}}>Forgot password ?</Text>
+                    </TouchableOpacity>
                     <Btn Width="90%" textColor="white" bgColor="#4b6043" btnLabel="Login" Press={()=>{
-                        alert("Welcome home");
+                        // alert("Welcome home");
                         props.navigation.navigate('Home');
                     }}/>
 
-                    <View>
+                    <View style={styles.forget}>
                         <Text>Don't have an account ?</Text>
                         <TouchableOpacity onPress={()=>{
-                            alert("Register with us");
+                            // alert("Register with us");
                             props.navigation.navigate('Sign')
                         }}>
-                            <Text>Signup</Text>
+                            <Text style={{color:'green'}}> Signup</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -67,7 +75,7 @@ const styles = StyleSheet.create({
         color:'white'
     },
     forget:{
-
+        flexDirection:'row',
     }
 })
 
