@@ -32,9 +32,9 @@ function Home(props){
                         props.navigation.navigate('History');
                     }}/>
                     <Box text="Nearby health centers" Press={() => toggleHospitalVisibility()}/>
-                    <Dialog isVisible={isHospitalVisible} displayText="We currently don't have any health service"/>
+                    <Dialog isVisible={isHospitalVisible} displayText="We currently don't have any health service" Press={() => toggleHospitalVisibility()}/>
                     <Box text="Ambulancies" Press={() => toggleAmbulanceVisibility()}/>
-                    <Dialog isVisible={isAmbulanceVisible} displayText="We currently don't have any Ambulance services"/>
+                    <Dialog isVisible={isAmbulanceVisible} displayText="We currently don't have any Ambulance services" Press={() => toggleAmbulanceVisibility()}/>
                     <Box text="+"/>
                 </View>
                 <View style={styles.containInf}>
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         width:'100%',
         flex:2,
         backgroundColor:'#87ab69',
-        flexDirection:'column',
+        flexDirection:'row',
         flexWrap:'wrap',
         justifyContent:'center',
         alignItems:'center',
