@@ -3,7 +3,6 @@ import {
     StyleSheet,
     Text,
     Dimensions,
-    TouchableOpacity
 } from 'react-native';
 
 
@@ -14,12 +13,12 @@ import Btn from '../helpers/Btn';
 const windowWidth = Dimensions.get('screen').width;
 const windowHeight = Dimensions.get('window').height;
 
-const Sign = (props) => {
+const maamaInfo = (props) => {
 
     return(
         <Background>
             <View style={styles.container}>
-                <Text style={styles.text}>About you</Text>
+                <Text style={styles.text}>Help us understand you.</Text>
                 <Text>We want to know more about you.</Text>
                 <View style={styles.innerView}>
                     <Field placeholder="Your Full name"/>
@@ -54,7 +53,7 @@ const styles = StyleSheet.create({
 })
 
 
-export default Sign;
+export default maamaInfo;
 
 // import { TextInput, View, StyleSheet, Button } from "react-native"
 
