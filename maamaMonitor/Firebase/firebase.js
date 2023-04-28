@@ -15,6 +15,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
+// npx expo instll react-native@0.71.7 - install the latest
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth();
