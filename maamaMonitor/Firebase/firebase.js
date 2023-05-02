@@ -15,8 +15,8 @@ const firebaseConfig = {
   appId: "1:251168060720:web:fab1c5f50a181777fa04f5"
 };
 
-// Initialize Firebase
 // npx expo instll react-native@0.71.7 - install the latest
+// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth();
