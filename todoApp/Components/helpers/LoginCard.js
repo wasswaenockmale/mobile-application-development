@@ -20,19 +20,19 @@ const LoginCard = (props)=>{
                 style={styles.textInput} 
                 placeholder="Enter email" 
                 placeholderTextColor='#fff' 
-                keyboardType='email-address' 
-                onChange={(text) => getEmail(text)}/>
+                // keyboardType='email-address' 
+                onChangeText={newText => setEmail(newText)}/>
 
             <TextInput 
                 style={styles.textInput} 
                 placeholder="Enter password" 
                 placeholderTextColor='#fff' 
                 secureTextEntry={true}
-                onChange={(text) => getPassword(text)}/>
+                onChangeText={text => setPassword(text)}/>
 
             <Button title="Login" style={styles.btn} onPress={()=> {
                 if(email != "" && password != ""){
-                    props.navigation.navigate('DashBoard',{password, email});
+                    props.navigation.navigate('Home',{email, password});
                 }else{
                     alert("Email and password can't be empty!");
                 }
