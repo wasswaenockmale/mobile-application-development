@@ -1,10 +1,11 @@
-import { StyleSheet, Text, View } from "react-native"
-import { Icon } from "react-native-vector-icons/Icon"
+import { Ionicons } from "@expo/vector-icons"
+import { Image, StyleSheet, Text, View } from "react-native"
 
-export default function LogoTitle(){
+
+export default function LogoTitle(props){
     return(
         <View style={styles.header}>
-            <Icon name="ios-chevron-back" size={32} color="white"/>
+            <Ionicons name="chevron-back-outline=" size={32} color="black"/>
             <Text>This is what I want</Text>
         </View>
     )
