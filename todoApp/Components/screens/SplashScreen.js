@@ -1,7 +1,7 @@
 import {View, StyleSheet, Text} from 'react-native';
 import ImageView from '../helpers/ImageView';
 
-const image = require('../assets/logo_1.png');
+const image = require('../../assets/logo_1.png');
 
 export default function SplashScreen(){
     return(
