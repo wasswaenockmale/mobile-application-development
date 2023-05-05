@@ -1,10 +1,10 @@
 import {useState, useEffect} from 'react';
-import SplashScreen from './Components/SplashScreen';
+import SplashScreen from './Components/screens/SplashScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Login from './Components/Login';
-import SignUp from './Components/SignUp';
-import DashBoard from './Components/DashBoard';
+import Login from './Components/screens/Login';
+import SignUp from './Components/screens/SignUp';
+import DashBoard from './Components/screens/DashBoard';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,7 +27,6 @@ export default function App(){
           <Stack.Screen name='Home' component={DashBoard}/>
         </Stack.Navigator>
       </NavigationContainer>
-      // <DashBoard />
     )
   }else{
     return <SplashScreen />
