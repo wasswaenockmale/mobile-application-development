@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, View, Text, Image, FlatList, Pressable, } from "react-native";
+import { StyleSheet, View, Text, Image, FlatList, TouchableOpacity, } from "react-native";
 import TaskCard from "../helpers/TaskCard";
 import { TextInput } from "react-native-gesture-handler";
 
-export default function DashBoard(){
+export default function DashBoard({ navigation, route }){
 
     const [tasks, setTasks] = useState([]);
-
+    // const {fname} = route.params;
+    const { email, password } = route.params;
     useEffect(()=>{
         setTasks([
             {
@@ -45,15 +46,18 @@ export default function DashBoard(){
     return(
         <View style={styles.container}>
             <View style={styles.navbar}>
-                <Text style={styles.navbarText}>Today's task</Text>
+                <Text>{email.charAt(0).toUpperCase() + email.slice(1)}</Text>
+                <Text style={styles.navbarText}>Tthese are today's task</Text>
             </View>
             <View style={styles.previewTasks}>
                 <FlatList data={tasks} 
                 renderItem={({item}) => {
                     return(
-                        <Pressable onPress={() => alert(item.content)}>
+                        <TouchableOpacity onPress={() => {
+                            navigation.setOptions({title: `Dashboard ${item.title}`})
+                        }}>
                             <TaskCard task={item}/>
-                        </Pressable>
+                        </TouchableOpacity>
                     )
                 }}
                 keyExtractor={task=>task.id}/>
@@ -72,8 +76,8 @@ const styles = StyleSheet.create({
         height:'100%',
     },
     navbar:{
-        backgroundColor:'#ADD8E6',
-        height:'20%',
+        backgroundColor:'white',
+        height:'10%',
         width:"100%",
         flexDirection: 'row',
         justifyContent:'space-between',
@@ -85,7 +89,7 @@ const styles = StyleSheet.create({
 
     previewTasks:{
         flex:9,
-        backgroundColor:'#00d2ff',
+        backgroundColor:'white',
     },
     img:{
         height:30,
@@ -96,6 +100,7 @@ const styles = StyleSheet.create({
     },
     navbarText:{
         marginTop:15,
-        fontSize: 30,
+        fontSize: 20,
+        padding:10
     }
 });
