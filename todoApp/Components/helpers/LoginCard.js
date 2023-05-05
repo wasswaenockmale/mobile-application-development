@@ -1,13 +1,42 @@
 import {View, TextInput, StyleSheet, Button, Text} from 'react-native';
 import LoginFooter from './LoginFooter';
+import React, { useState } from 'react';
 
 const LoginCard = (props)=>{
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const getEmail = (text) => {
+        setEmail(text);
+    }
+
+    const getPassword = (text) => {
+        setPassword(text);
+    }
     return(
         <View style={styles.container}>
             <Text style={styles.logText}>Login</Text>
-            <TextInput style={styles.textInput} placeholder="Enter email" placeholderTextColor='#fff'/>
-            <TextInput style={styles.textInput} placeholder="Enter password" placeholderTextColor='#fff'/>
-            <Button title="Login" style={styles.btn} onPress={()=>alert('Clicked the login button.')}/>
+            <TextInput 
+                style={styles.textInput} 
+                placeholder="Enter email" 
+                placeholderTextColor='#fff' 
+                keyboardType='email-address' 
+                onChange={(text) => getEmail(text)}/>
+
+            <TextInput 
+                style={styles.textInput} 
+                placeholder="Enter password" 
+                placeholderTextColor='#fff' 
+                secureTextEntry={true}
+                onChange={(text) => getPassword(text)}/>
+
+            <Button title="Login" style={styles.btn} onPress={()=> {
+                if(email != "" && password != ""){
+                    props.navigation.navigate('DashBoard',{password, email});
+                }else{
+                    alert("Email and password can't be empty!");
+                }
+            }}/>
             <LoginFooter navigation={props.navigation}/>
         </View>
     )
