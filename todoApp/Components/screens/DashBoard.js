@@ -47,7 +47,7 @@ export default function DashBoard({ navigation, route }){
         <View style={styles.container}>
             <View style={styles.navbar}>
                 <Text>{email.charAt(0).toUpperCase() + email.slice(1)}</Text>
-                <Text style={styles.navbarText}>Tthese are today's task</Text>
+                <Text style={styles.navbarText}>These are today's task</Text>
             </View>
             <View style={styles.previewTasks}>
                 <FlatList data={tasks} 
