@@ -6,6 +6,9 @@ import Login from './Components/screens/Login';
 import SignUp from './Components/screens/SignUp';
 import DashBoard from './Components/screens/DashBoard';
 import LogoTitle from './Components/helpers/LogoTitle';
+import { ScreenStackHeaderRightView } from 'react-native-screens';
+import { Button } from 'react-native';
+import Back from './Components/helpers/Back';
 
 const Stack = createNativeStackNavigator();
 
@@ -23,9 +26,22 @@ export default function App(){
     return (
       <NavigationContainer>
         <Stack.Navigator initialRouteName='Login'>
-          <Stack.Screen name="Login" component={Login}/>
-          <Stack.Screen name='SignUp' component={SignUp} />
-          <Stack.Screen name='Home' component={DashBoard} options={{headerTitle: () => <LogoTitle />}}/>
+          <Stack.Screen name="Login" component={Login} options={{headerShown: false}}/>
+          <Stack.Screen name='SignUp' component={SignUp} options={{headerShown: false}} />
+          <Stack.Screen name='Home' component={DashBoard} options={{
+            headerShown:false
+            // headerTitle:'Dashboard',
+            // headerTitle: () => <LogoTitle />, 
+            // headerRight: ()=>{
+            //   <Button 
+            //   onPress={()=>alert("The button works very well")}
+            //   title='Info'
+            //   color="#fff" />
+            // },
+            // headerLeft:()=>{
+            //   <Back />
+            // }
+            }}/>
         </Stack.Navigator>
       </NavigationContainer>
     );
