@@ -22,6 +22,14 @@ const Login = (props) => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+    const handleUser = (change) => {
+        setUsername(change);
+    }
+
+    const handlePassword = (change) => {
+        setPassword(change);
+    }
     return(
         <Background>
             <View style={styles.container}>
@@ -29,8 +37,8 @@ const Login = (props) => {
                 <View style={styles.innerView}>
                     <Text>Welcome Back</Text>
                     <Text>Login to your account</Text>
-                    <Field placeholder="Email" keyboardType={"email-address"}/>
-                    <Field placeholder="Password" secureTextEntry={true}/>
+                    <Field placeholder="Email" keyboardType={"email-address"} onChange={handleUser} />
+                    <Field placeholder="Password" secureTextEntry={true} onChange={handlePassword} />
                     <TouchableOpacity
                         style={
                             {...styles.forget, 

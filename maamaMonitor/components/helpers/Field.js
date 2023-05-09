@@ -4,9 +4,13 @@ import {
 } from 'react-native'
 
 const Field = props => {
+    const handleInput = text => {
+        props.onChange(text)
+    }
     return (
         <TextInput
         {...props} placeholderTextColor={'green'} style={styles.inputStyle}
+        onChange={ text => handleInput(text)}
         ></TextInput>
     )
 }
