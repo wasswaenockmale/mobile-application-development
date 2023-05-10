@@ -1,5 +1,4 @@
 import React from "react";
-import Background from "../helpers/background";
 import { StyleSheet, View, Text } from "react-native";
 import Btn from "../helpers/Btn";
 
