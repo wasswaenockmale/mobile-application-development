@@ -3,7 +3,8 @@ import {
     StyleSheet,
     Text,
     Dimensions,
-    TouchableOpacity
+    TouchableOpacity,
+    Image
 } from 'react-native';
 
 
@@ -31,26 +32,28 @@ const Login = (props) => {
         setPassword(change);
     }
     return(
-        <Background>
+        <>
             <View style={styles.container}>
-                <Text style={styles.text}>Login</Text>
+                <View style={styles.loginHeader}>
+                    <Text style={styles.text}>Welcome Back</Text>
+                </View>
                 <View style={styles.innerView}>
-                    <Text>Welcome Back</Text>
-                    <Text>Login to your account</Text>
-                    <Field placeholder="Email" keyboardType={"email-address"} onChange={handleUser} />
+                    {/* <Text style={styles.text}>Login</Text> */}
+                    <Image source={require('../../assets/beautiful-pregnant-woman-purple-background-vector-illustration-50215465.png')} style={styles.logo} />
+                    <Text style={{fontSize:20, color: 'purple', marginTop:10}}>Login to your account</Text>
+                    <Field placeholder="Email" keyboardType={"email-address"} onChange={handleUser}/>
                     <Field placeholder="Password" secureTextEntry={true} onChange={handlePassword} />
                     <TouchableOpacity
                         style={
                             {...styles.forget, 
-                                alignSelf:'flex-end', 
-                                marginRight:30, 
+                                alignSelf:'center', 
                                 marginBottom:10
                             }}
                             onPress={() => alert('set new password')}
                         >
-                        <Text style={{color:'green'}}>Forgot password ?</Text>
+                        <Text style={{color:'purple'}}>Forgot password ?</Text>
                     </TouchableOpacity>
-                    <Btn Width="90%" textColor="white" bgColor="#4b6043" btnLabel="Login" Press={()=>{
+                    <Btn Width="90%" textColor="white" bgColor="purple" btnLabel="Login" Press={()=>{
                         if(username !== "" && password !== ""){
                             // auth
                             props.navigation.navigate('Home');
@@ -65,12 +68,12 @@ const Login = (props) => {
                             // alert("Register with us");
                             props.navigation.navigate('Sign')
                         }}>
-                            <Text style={{color:'green'}}> Signup</Text>
+                            <Text style={{color:'purple'}}> Signup</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
             </View>
-        </Background>
+        </>
     )
 }
 
@@ -88,12 +91,23 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },
     text:{
-        fontSize:64,
+        fontSize:30,
         marginVertical:10,
-        color:'white'
+        color:'purple'
     },
     forget:{
         flexDirection:'row',
+    },
+    loginHeader:{
+        height:'15%',
+        justifyContent:'center'
+    },
+    logo:{
+        width:70,
+        height:70,
+        top:30,
+        position:'absolute',
+        borderRadius:50,
     }
 })
 
