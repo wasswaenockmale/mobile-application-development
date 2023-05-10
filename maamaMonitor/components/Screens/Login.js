@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 
 
-import Background from '../helpers/background';
 import Field from '../helpers/Field'
 import Btn from '../helpers/Btn';
 import { Database } from 'firebase/database';
