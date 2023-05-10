@@ -9,7 +9,7 @@ const Field = props => {
     }
     return (
         <TextInput
-        {...props} placeholderTextColor={'green'} style={styles.inputStyle}
+        {...props} placeholderTextColor={'purple'} style={styles.inputStyle}
         onChange={ text => handleInput(text)}
         ></TextInput>
     )
@@ -18,7 +18,7 @@ const Field = props => {
 const styles = StyleSheet.create({
     inputStyle:{
         borderRadius:100,
-        color: 'green',
+        color: 'purple',
         paddingHorizontal:10,
         width:"90%",
         height:50,
