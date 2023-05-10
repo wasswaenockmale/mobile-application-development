@@ -3,11 +3,10 @@ import {
     View,
     Text,
     StyleSheet,
-    Dimensions,
+    StatusBar,
 } from 'react-native'
 import Box from "../helpers/dashbord/Box";
 import InfoCard from "../helpers/dashbord/informationCard";
-import Background from "../helpers/background";
 import Dialog from "../dialog/Dialog";
 
 function Home(props){
@@ -22,13 +21,29 @@ function Home(props){
         setIsAmbulanceVisible(!isAmbulanceVisible);
     }
     
+    // Function for picking the location of the expectant mother so that the nearest medical center can be determined.
+    // In the radius of 3KM
+    async function getLocation() {
+        const status = await Location.requestForegroundPermissionsAsync();
+
+        if(status == 'granted'){
+            alert('Permision granted');
+            return;
+        }
+
+        const location = await Location.getCurrentPositionAsync({});
+        setLoc(location);
+    }
+
     return(
-        <Background>
+        <>
            <View style={styles.contain}>
-                <Text style={{color:'white',fontSize:20, margin:10,}}>Health is Wealth</Text>
+                <View style={styles.header}>
+                    <Text>Health is Wealth</Text>
+                </View>
                 <View style={styles.innerContain}>
                     <Box text="Your health history" Press={() => {
-                        alert("Checking your health records");
+                        // alert("Checking your health records");
                         props.navigation.navigate('History');
                     }}/>
                     <Box text="Nearby health centers" Press={() => toggleHospitalVisibility()}/>
@@ -42,21 +57,28 @@ function Home(props){
                     <InfoCard text="Weeks of pegnancy"/>
                     <InfoCard text="Weeks of pegnancy"/>
                 </View>
+                <StatusBar style="auto" />
            </View>
-        </Background>
+        </>
     )
 }
 
 const styles = StyleSheet.create({
     contain:{
-        width: Dimensions.get('screen').width,
-        height:Dimensions.get('window').height,
-        padding:30,
+        width: "100%",
+        height:'100%',
+    },
+    header:{
+        backgroundColor:'purple',
+        width:'100%',
+        height:'10%',
+        flexDirection:"row",
+        padding:20
     },
     innerContain:{
         width:'100%',
         flex:2,
-        backgroundColor:'#87ab69',
+        backgroundColor:'#F9F8F8',
         flexDirection:'row',
         flexWrap:'wrap',
         justifyContent:'center',
@@ -67,6 +89,19 @@ const styles = StyleSheet.create({
     containInf:{
         flex:1,
         
+    },
+    left:{
+        width:'90%',
+        alignSelf:'stretch',
+    },
+    text:{
+        color:'purple',
+        fontSize: 15
+    },
+    text_heading:{
+        color:'white',
+        fontSize: 15,
+        textAlign:'center'
     }
 });
 
