@@ -86,8 +86,8 @@ const styles = StyleSheet.create({
         height:windowHeight,
         width:windowWidth,
         paddingTop:100,
-        borderTopLeftRadius:90,
-        borderTopRightRadius:90,
+        borderTopLeftRadius:50,
+        borderTopRightRadius:50,
         alignItems:'center'
     },
     text:{
