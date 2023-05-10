@@ -9,11 +9,45 @@ import {
 import Background from '../helpers/background';
 import Field from '../helpers/Field'
 import Btn from '../helpers/Btn';
+import { useState } from 'react';
 
 const windowWidth = Dimensions.get('screen').width;
 const windowHeight = Dimensions.get('window').height;
 
 const maamaInfo = (props) => {
+
+    const [name, setName] = useState('');
+    const [age, setAge] = useState('');
+    const [lnmp, setLnmp] = useState('');
+    const [nok, setNok] = useState('');
+    const [nokPhoneNumber, setNokPhoneNumber] = useState('');
+
+    const functions = {
+        handleAge: newText=>{
+            setAge(newText);
+        },
+        handleName: newText=>{
+            setName(newText);
+        },
+        handleLnmp: newText=>{
+            setLnmp(newText);
+        },
+        handleNok: newText=>{
+            setNok(newText);
+        },
+        handleNokPhoneNumber: newText=>{
+            setNokPhoneNumber(newText);
+        },
+        pressBtn: function(){
+            if(name != '' && nok != '' && age != '' && nokPhoneNumber != '' && lnmp != ''){
+                console.log(name);
+                console.log(nok);
+                console.log(nokPhoneNumber)
+            }else{
+                alert('There is something wrong!!!!');
+            }
+        }
+    }
 
     return(
         <Background>
@@ -21,12 +55,12 @@ const maamaInfo = (props) => {
                 <Text style={styles.text}>Help us understand you.</Text>
                 <Text>We want to know more about you.</Text>
                 <View style={styles.innerView}>
-                    <Field placeholder="Your Full name"/>
-                    <Field placeholder="Age"/>
-                    <Field placeholder="LNMP"/>
-                    <Field placeholder="Next of Kin"/>
-                    <Field placeholder="NOK's Phone number"/>
-                    <Btn Width="90%" textColor="white" bgColor="#4b6043" btnLabel="Submit"/>
+                    <Field placeholder="Your Full name" onChange={functions.handleName}/>
+                    <Field placeholder="Age" onChange={functions.handleAge}/>
+                    <Field placeholder="LNMP" onChange={functions.handleLnmp}/>
+                    <Field placeholder="Next of Kin" onChange={functions.handleNok}/>
+                    <Field placeholder="NOK's Phone number" onChange={functions.handleNokPhoneNumber}/>
+                    <Btn Width="90%" textColor="white" bgColor="#4b6043" btnLabel="Submit" Press={functions.pressBtn}/>
                 </View>
             </View>
         </Background>
