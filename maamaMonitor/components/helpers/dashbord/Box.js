@@ -1,5 +1,5 @@
 import { TouchableOpacity, StyleSheet, View, Text } from "react-native"
-// props = {text,Press}
+
  const Box = (props)=>{
     return(
         <View style={styles.container}>
@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     container:{
         width:'40%',
         height: '40%',
-        backgroundColor: 'green',
+        backgroundColor: '#6D3190',
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',

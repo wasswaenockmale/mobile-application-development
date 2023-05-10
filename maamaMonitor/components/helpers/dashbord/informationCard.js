@@ -13,15 +13,15 @@ const InfoCard = props =>{
 
 const styles = StyleSheet.create({
     container:{
-        width: '100%',
+        width: '95%',
         height: 40,
         borderLeftWidth: 5,
-        borderLeftColor: 'green',
+        borderLeftColor: '#6D3190',
         flexDirection: 'row',
         alignItems:'center',
-        marginTop:10,
+        margin:10,
         borderRadius:5,
-        backgroundColor:'#95bb72',
+        backgroundColor:'#B19CD9',
     },
     icon:{
         width:50,
