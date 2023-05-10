@@ -1,11 +1,8 @@
-import Checkbox from "expo-checkbox";
+import {Checkbox} from "expo-checkbox";
 import { StyleSheet } from "react-native";
-import { View } from "react-native/types";
+import { View } from "react-native";
 
-function Options(props){
-    // handleCheck(){
-        
-    // }
+function Opt(props){
     return(
         <View style={styles.optionContainer}>
             <Checkbox 
@@ -36,4 +33,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Options;
+export default Opt;
