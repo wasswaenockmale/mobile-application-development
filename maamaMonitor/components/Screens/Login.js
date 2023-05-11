@@ -10,10 +10,7 @@ import {
 
 import Field from '../helpers/Field'
 import Btn from '../helpers/Btn';
-import { Database } from 'firebase/database';
-import { Auth } from 'firebase/auth';
 import React, { useState } from 'react';
-import { auth } from '../../Firebase/firebase';
 
 const windowWidth = Dimensions.get('screen').width;
 const windowHeight = Dimensions.get('window').height;
