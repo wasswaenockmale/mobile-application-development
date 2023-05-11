@@ -10,6 +10,7 @@ import MedicalSignUp from './components/Screens/MedicalSignUp'
 import MedicalLogin from './components/Screens/MedicalLogin';
 import MedicalInfo from './components/Screens/MedicalInfo';
 import MaamaInfo from './components/Screens/newMaama';
+import Doctor from './components/Screens/Doctor'
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ export default function App() {
         <Stack.Screen name='MedicalSignUp' component={MedicalSignUp} />
         <Stack.Screen name='MedicalLogin' component={MedicalLogin} />
         <Stack.Screen name='MedicalInfo' component={MedicalInfo} />
+        <Stack.Screen name='Doctor' component={Doctor} />
 
       </Stack.Navigator>
     </NavigationContainer>
