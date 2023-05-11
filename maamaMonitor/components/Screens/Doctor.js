@@ -23,6 +23,7 @@ const Doctor = ({navigation}) => {
     )
 }
 
+export default Doctor;
 const styles = StyleSheet.create({
     container:{
         padding:0,
