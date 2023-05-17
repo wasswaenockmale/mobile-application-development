@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text } from "react-native"
+import { Pressable, Text } from "react-native"
 
 const Btn = (props) =>{
     return(

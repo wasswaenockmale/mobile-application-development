@@ -1,5 +1,4 @@
 import { Ionicons } from "@expo/vector-icons";
-import { Text } from "react-native"
 import { TouchableOpacity } from "react-native/types"
 
 const Back = (props) => {
