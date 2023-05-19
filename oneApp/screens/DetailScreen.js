@@ -3,8 +3,15 @@ import {View, Text} from 'react-native';
 
 export default function Details({navigation}) {
     return(
-        <View>
-            <Text>Details screen</Text>
+        <View style={{
+            flex:1,
+            justifyContent:'center',
+            alignItems:'center',
+        }}>
+            <Text style={{
+                fontSize:20,
+                fontWeight:'bold'
+            }}>Details</Text>
         </View>
     )
 }

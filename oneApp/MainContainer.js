@@ -3,9 +3,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons';
 
 // import the screens
-import HomeScreen from "./screens/HomeScreen";
+// import HomeScreen from "./screens/HomeScreen";
 import Details from "./screens/DetailScreen";
 import Settings from "./screens/Settings";
+import StackNavigator from './StackNavigator';
 
 // create the screens to use
 const homeName = 'Home';
@@ -34,14 +35,30 @@ export default function MainContainer(){
 
                         return <Ionicons name={iconName} color={color} size={size} />
                     },
+                    tabBarStyle:{
+                        padding: 5,
+                        position: 'absolute',
+                        // backgroundColor:'yellow',
+                        margin:10,
+                        borderRadius:10
+                    },
+                    
                 })}
                 // tabBarOptions={{
+                //     activeTintColor:'tomato',
+                //     inactiveTintColor: 'grey'
                 // }}
             >
-                <Tab.Screen name={homeName} component={HomeScreen} />
-                <Tab.Screen name={detailsName} component={Details} />
-                <Tab.Screen name={settingsName} component={Settings} />
+                <Tab.Screen name={homeName} component={StackNavigator} options={{
+                    headerShown:false
+                }}/>
+                <Tab.Screen name={detailsName} component={Details} options={{
+                    headerShown:false
+                }}/>
+                <Tab.Screen name={settingsName} component={Settings} options={{
+                    headerShown:false,
+                    tabBarBadge:3}}/>
             </Tab.Navigator>
-        </NavigationContainer>
+         </NavigationContainer>
     )
 }
