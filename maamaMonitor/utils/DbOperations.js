@@ -1,10 +1,10 @@
 import { db } from '../../Firebase/firebase';
-import { ref } from 'firebase/database';
+import { DataSnapshot, onValue, ref } from 'firebase/database';
 
 // For saving date to the database
-export async function create(pId, name,username, email, phone, password){
+export async function setMother(pId, name,username, email, phone, password, userType){
     try {
-        await set(ref(db, 'medicalCenter/' + pId), {
+        await set(ref(db, `${userType}/` + pId), {
             name: name,
             username: username,
             email: email,
@@ -12,7 +12,7 @@ export async function create(pId, name,username, email, phone, password){
             password: password,
             // More is to be saved to this user.
         }).then(() => {
-            alert('Data submitted')
+            alert('Account created')
         }).catch((error) => {
             alert(error);
         });
@@ -22,7 +22,14 @@ export async function create(pId, name,username, email, phone, password){
 }
 
 
-export async function getPatients() {
-    
+export async function getPatient() {
+    try {
+        const response = await ref(db, 'patients/' + patientId + '/history');
+        onValue(response, (snapshot)=>{
+            const data = snapshot.val();
+            
+        })
+    } catch (error) {
+        console.error(error);
+    }
 }
-
