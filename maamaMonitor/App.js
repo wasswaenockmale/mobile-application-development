@@ -11,6 +11,8 @@ import MedicalLogin from './components/Screens/MedicalLogin';
 import MedicalInfo from './components/Screens/MedicalInfo';
 import MaamaInfo from './components/Screens/newMaama';
 import Doctor from './components/Screens/Doctor'
+import BP from './components/Screens/BP';
+import MoreMama from './components/Screens/MoreInfo';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,8 +30,10 @@ export default function App() {
         <Stack.Screen name='MedicalLogin' component={MedicalLogin} />
         <Stack.Screen name='MedicalInfo' component={MedicalInfo} />
         <Stack.Screen name='Doctor' component={Doctor} />
-
+        <Stack.Screen name='BP' component={BP} />
+        <Stack.Screen name='MoreInfo' component={MoreMama} />
       </Stack.Navigator>
     </NavigationContainer>
+    
   );
 }
