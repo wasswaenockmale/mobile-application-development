@@ -13,8 +13,6 @@ import {
 import Field from '../helpers/Field'
 import Btn from '../helpers/Btn';
 import { useState } from 'react';
-import { db } from '../../Firebase/firebase';
-import { ref } from 'firebase/database';
 
 const windowWidth = Dimensions.get('screen').width;
 const windowHeight = Dimensions.get('window').height;
@@ -28,21 +26,6 @@ const MedicalSignUp = (props) => {
     const [password, setPassword] = useState('');
     const [pConfirm, setPConfirm] = useState('')
 
-    // For saving date to the database
-    function create(pId, name,username, email, phone, password){
-        set(ref(db, 'medicalCenter/' + pId), {
-            name: name,
-            username: username,
-            email: email,
-            phone: phone,
-            password: password,
-            // More is to be saved to this user.
-        }).then(() => {
-            alert('Data submitted')
-        }).catch((error) => {
-            alert(error);
-        });
-    }
 
     const storeTextInput = {
         getName: text => {

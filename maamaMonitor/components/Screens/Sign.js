@@ -127,7 +127,7 @@ const styles = StyleSheet.create({
     text:{
         fontSize:50,
         // marginVertical:10,
-        color:'white'
+        color:'purple'
     },
     forget:{
         flexDirection:'row',

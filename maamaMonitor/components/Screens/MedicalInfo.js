@@ -16,6 +16,7 @@ import Checkbox from 'expo-checkbox';
 import {Opt} from '../helpers/select/OptionSelect';
 import Btn from '../helpers/Btn';
 import * as Location from 'expo-location';
+import { getLocation } from '../../utils/getLocation';
 
 
 const windowWidth = Dimensions.get('screen').width;
@@ -25,19 +26,7 @@ const MedicalInfo = (props) => {
     const [isChecked, setIsChecked] = useState(false);
     const [loc, setLoc] = useState({});
 
-    // Function for picking the location of the medication center so that it can be stored in the database for future use.
-    async function getLocation() {
-        const status = await Location.requestForegroundPermissionsAsync();
-
-        if(status == 'granted'){
-            alert('Permision granted');
-            return;
-        }
-
-        const location = await Location.getCurrentPositionAsync({});
-        setLoc(location);
-    }
-
+    setLoc(getLocation(Location));
 
     const services = [
         {
