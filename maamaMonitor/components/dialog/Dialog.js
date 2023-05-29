@@ -5,7 +5,7 @@ const Dialog = (props) => {
         <Modal visible={props.isVisible} animationType="fade" transparent={true}>
             <View style={styles.modalView}>
                 <View style={styles.alert}>
-                    <Text style={styles.alertTitle}>Sorry!</Text>
+                    <Text style={styles.alertTitle}>{props.title}</Text>
                     <Text style={styles.alertMessage}>{props.displayText}</Text>
                 <View style={styles.alertButtonGroup}>
                     <View style={styles.alertButton}>

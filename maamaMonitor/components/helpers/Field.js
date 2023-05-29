@@ -22,8 +22,8 @@ const styles = StyleSheet.create({
         paddingHorizontal:10,
         width:"90%",
         height:50,
-        marginTop:20,
-        marginBottom:10,
+        marginTop:0,
+        marginBottom:20,
         backgroundColor:'rgb(220,220,220)',
     }
 })

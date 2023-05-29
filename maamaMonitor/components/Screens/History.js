@@ -22,11 +22,11 @@ const History = (props) => {
                         <AntDesign name="left" size={24} color="white" style={{}} onPress={() => {
                             props.navigation.navigate('Home');
                         }}/>
-                    <View style={styles.left}>
                         <Text style={styles.text_heading}>Your medical history</Text>
-                    </View>
+                    {/* <View style={styles.left}>
+                    </View> */}
                 </View>
-                <View>
+                <View style={{padding:10}}>
                     <Text style={{color:'purple'}}>No records yet, new app</Text>
                     <Table>
                         <Row data={tableData.tableHead} style={styles.head} textStyle={styles.text} />
@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
         width:'100%',
         height:'10%',
         flexDirection:"row",
-        padding:20
+        alignItems:"center"
     },
     left:{
         width:'90%',
@@ -67,6 +67,7 @@ const styles = StyleSheet.create({
     text_heading:{
         color:'white',
         fontSize: 15,
+        marginLeft:20,
         textAlign:'center'
     }
 })
