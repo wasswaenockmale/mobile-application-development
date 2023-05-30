@@ -1,16 +1,19 @@
-import { View, Modal, Text, StyleSheet, Button } from "react-native";
+import { View, Modal, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
 
-const Dialog = (props) => {
+const Dialog = ({isVisible, title, displayText, noPress, yesPress, yes,no}) => {
     return(
-        <Modal visible={props.isVisible} animationType="fade" transparent={true}>
+        <Modal visible={isVisible} animationType="fade" transparent={true}>
             <View style={styles.modalView}>
                 <View style={styles.alert}>
-                    <Text style={styles.alertTitle}>{props.title}</Text>
-                    <Text style={styles.alertMessage}>{props.displayText}</Text>
+                    <Text style={styles.alertTitle}>{title}</Text>
+                    <Text style={styles.alertMessage}>{displayText}</Text>
                 <View style={styles.alertButtonGroup}>
-                    <View style={styles.alertButton}>
-                        <Button title="OK" onPress={props.Press} />
-                    </View>
+                    <TouchableOpacity onPress={noPress} style={styles.alertButton}>
+                        <Text>{no}</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={yesPress} style={styles.alertButton}>
+                        <Text>{yes}</Text>
+                    </TouchableOpacity>
                 </View>
                 </View>
             </View>
@@ -61,19 +64,13 @@ const styles = StyleSheet.create({
         color:"#000"
     },
     alertButtonGroup:{
-        marginTop:0,
-        marginRight:0,
-        marginBottom:8,
-        marginLeft:24,
-        padding:10,
+        // marginLeft:24,
+        padding:20,
+        width:'100%',
         display:"flex",
         flexDirection:'row',
-        justifyContent:"flex-end"
-    },
-    alertButton:{
-        marginTop:12,
-        marginRight:8,
-        width:100
+        justifyContent:"space-between",
+        // borderWidth:1
     },
 });
 
