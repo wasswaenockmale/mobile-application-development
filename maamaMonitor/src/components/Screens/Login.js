@@ -4,20 +4,31 @@ import {
     Text,
     Dimensions,
     TouchableOpacity,
-    Image
+    Image,
+    Platform
 } from 'react-native';
 
-
+import { app } from '../../Firebase/Config';
+import { getAuth } from 'firebase/auth';
+import { getDatabase } from 'firebase/database';
 import Field from '../helpers/Field'
 import Btn from '../helpers/Btn';
-import React, { useState } from 'react';
+import React, { useState, } from 'react';
 
 const windowWidth = Dimensions.get('screen').width;
 const windowHeight = Dimensions.get('window').height;
 
 const Login = (props) => {
 
+    if(app?.options || Platform.OS === 'web'){
+        throw new Error(
+            'We need to implement this in either android or IOS'
+        );
+    }
+
+    const authUser = getAuth(app);
     const [username, setUsername] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
 
     const handleUser = (change) => {

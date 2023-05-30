@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase } from "firebase/database";
-import { getAuth } from 'firebase/auth';
+// import { getDatabase } from "firebase/database";
+// import { getAuth } from 'firebase/auth';
 // import { getDatabase } from 'firebase/database';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -18,7 +18,7 @@ const firebaseConfig = {
 
 // npx expo instll react-native@0.71.7 - install the latest
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
-export const auth = getAuth();
-export const db = getDatabase(app)
+// export const firebaseAuth = getAuth();
+// export const db = getDatabase(app)
