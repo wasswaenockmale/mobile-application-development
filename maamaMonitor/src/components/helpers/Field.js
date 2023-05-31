@@ -10,7 +10,7 @@ const Field = props => {
     return (
         <TextInput
         {...props} placeholderTextColor={'purple'} style={styles.inputStyle}
-        onChange={ text => handleInput(text)}
+        onChangeText={ text => handleInput(text)}
         ></TextInput>
     )
 }
