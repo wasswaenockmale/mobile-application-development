@@ -1,44 +1,88 @@
 import { AntDesign } from "@expo/vector-icons";
-import { Text, TouchableOpacity, View } from "react-native";
-import Waiting from "../helpers/WaitingBP";
+import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { useState } from "react";
 
 export default function BP(props){
     const res = '';
+    const [disable, setdisable] = useState(true);
     const bluetoothPermision = () =>{
         // ask for the bluetooth permision
         
     }
-    const establishDeviceConnection = () => {
-        // the adrino board has to connect to the mobile application.
+
+    const getAdrinoData = () => {
+        // Get adrino data after measurement.
     }
+
+
     return (
-        <View>
-            <View>
-                <AntDesign name="left" size={32} color='white'/>
-                <Text>Take your blood pressure.</Text>
-                <TouchableOpacity onPress={props.navigation.navigator('History', {
-                    // This is a route parameter.
-                    screen: 'BP',
-                })}>
-                    <Text>BP history</Text>
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <AntDesign name="left" size={32} color='white' onPress={()=>{
+                    props.navigation.navigate('Home');
+                }}/>
+                <Text style={styles.headerText}>Take your blood pressure.</Text>
+                <TouchableOpacity onPress={()=>props.navigation.navigate('History', {
+                    screenName: 'BP'
+                })} style={styles.bpHistoryBtn}>
+                    <Text style={{color:'white'}}>BP history</Text>
                 </TouchableOpacity>
             </View>
-            <View>
-                <Text>Make sure your bluetooth is turned on for the application to be able to read your BP</Text>
-                <TouchableOpacity>
-                    <Text></Text>
+            <View style={styles.content}>
+                <Text style={styles.contentText}>Make sure your bluetooth is turned on for the application to be able to read your BP</Text>
+                <TouchableOpacity style={styles.takeBP} onPress={()=>{
+                    alert("Machine not connected")
+                }}>
+                    <Text style={styles.BPBtnText}>Take BP</Text>
                 </TouchableOpacity>
-                <View>
-                    {
+                <View style={styles.BPDisplay}>
+                    {/* {
                         isChecking ? <Waiting /> : 
                         <View style={styles.BPView}>
                             {
                                 isHigh ? <Text style={styles.highBP}>{res}</Text> : <Text style={styles.lowBP}>{res}</Text>
                             }
                         </View>
-                     }
+                     } */}
                 </View>
             </View>
+            <StatusBar barStyle="light-content" />
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    header:{
+        flexDirection: "row",
+        alignItems:"center",
+        padding:5,
+        backgroundColor:'purple',
+        justifyContent:"space-between"
+    },
+    headerText:{
+        color:'white'
+    },
+
+    bpHistoryBtn:{
+        borderWidth:1,
+        borderColor:'white',
+        padding:5,
+        borderRadius:5
+    },
+
+    content:{
+        
+        flexDirection:'column',
+        padding:10,
+        justifyContent:"center",
+        alignItems:"center"
+    },
+
+    takeBP:{
+        borderRadius:5,
+        borderWidth:1,
+        borderColor:'purple',
+        padding:5,
+        margin:20,
+    }
+})

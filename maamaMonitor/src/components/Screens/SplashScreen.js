@@ -1,7 +1,7 @@
 import {
     View,
     StyleSheet,
-    Statusbar,
+    ActivityIndicator,
 } from 'react-native';
 
 export default function SplashScreen(){
@@ -9,12 +9,7 @@ export default function SplashScreen(){
         <View style={styles.container}>
             <View>
                 <Text style={styles.text}>Maama Monitor</Text>
-                <View>
-                    <View style={styles.dot}></View>
-                    <View style={styles.dot}></View>
-                    <View style={styles.dot}></View>
-                    <View style={styles.dot}></View>
-                </View>
+                <ActivityIndicator size="small" color="white" shouldRasterizeIOS/>
             </View>
         </View>
     )
@@ -26,12 +21,6 @@ const styles = StyleSheet.create({
         backgroundColor:'purple',
         justifyContent:'center',
         alignContent:'center'
-    },
-    dot:{
-        width:10,
-        height:10,
-        backgroundColor:'white',
-        padding:2
     },
     text:{
         color:'white',

@@ -35,7 +35,7 @@ function MedicalLogin(props){
                 </View>
                 <View style={styles.innerView}>
                     {/* <Text style={styles.text}>Login</Text> */}
-                    <Image source={require('../../assets/beautiful-pregnant-woman-purple-background-vector-illustration-50215465.png')} style={styles.logo} />
+                    <Image source={require('../../../assets/beautiful-pregnant-woman-purple-background-vector-illustration-50215465.png')} style={styles.logo} />
                     <Text style={{fontSize:20, color: 'purple', marginTop:10}}>Login to your account</Text>
                     <Field placeholder="Email" keyboardType={"email-address"} onChange={handleUser}/>
                     <Field placeholder="Password" secureTextEntry={true} onChange={handlePassword} />

@@ -5,38 +5,30 @@ import {
     Dimensions,
     TouchableOpacity,
     Image,
-    Platform
+    Alert
 } from 'react-native';
-
-import { app } from '../../Firebase/Config';
-import { getAuth } from 'firebase/auth';
-import { getDatabase } from 'firebase/database';
 import Field from '../helpers/Field'
 import Btn from '../helpers/Btn';
-import React, { useState, } from 'react';
+import { useContext, useState, } from 'react';
+import AuthContent from '../contexts/authContext';
+import { handleLogin } from '../../utils/functions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const windowWidth = Dimensions.get('screen').width;
 const windowHeight = Dimensions.get('window').height;
 
 const Login = (props) => {
-
-    if(app?.options || Platform.OS === 'web'){
-        throw new Error(
-            'We need to implement this in either android or IOS'
-        );
-    }
-
-    const authUser = getAuth(app);
-    const [username, setUsername] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    
+    const {user, setUser, setTokens} = useContext(AuthContent);
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
-    const handleUser = (change) => {
-        setUsername(change);
+    const handleEmail = text => {
+        setEmail(text);
     }
 
-    const handlePassword = (change) => {
-        setPassword(change);
+    const handlePassword = text => {
+        setPassword(text);
     }
     return(
         <>
@@ -46,9 +38,9 @@ const Login = (props) => {
                 </View>
                 <View style={styles.innerView}>
                     {/* <Text style={styles.text}>Login</Text> */}
-                    <Image source={require('../../assets/beautiful-pregnant-woman-purple-background-vector-illustration-50215465.png')} style={styles.logo} />
+                    <Image source={require('../../../assets/beautiful-pregnant-woman-purple-background-vector-illustration-50215465.png')} style={styles.logo} />
                     <Text style={{fontSize:20, color: 'purple', marginTop:10}}>Login to your account</Text>
-                    <Field placeholder="Email" keyboardType={"email-address"} onChange={handleUser}/>
+                    <Field placeholder="Email" keyboardType={"email-address"} onChange={handleEmail} />
                     <Field placeholder="Password" secureTextEntry={true} onChange={handlePassword} />
                     <TouchableOpacity
                         style={
@@ -61,9 +53,14 @@ const Login = (props) => {
                         <Text style={{color:'purple'}}>Forgot password ?</Text>
                     </TouchableOpacity>
                     <Btn Width="90%" textColor="white" bgColor="purple" btnLabel="Login" Press={()=>{
-                        if(username !== "" && password !== ""){
+                        if(email && password){
                             // auth
-                            props.navigation.navigate('Home');
+                                // setTokens(AsyncStorage.getItem('userToken'));
+                                setUser({email, password});
+                                const { navigation } = props;
+                                console.log(user)
+                                navigation.navigate('Home')
+                                // handleLogin(email, password, navigation, 'Home' );
                         }else{
                             alert('One of the fields are empty');
                         }
@@ -72,7 +69,7 @@ const Login = (props) => {
                     <View style={styles.forget}>
                         <Text>Don't have an account ?</Text>
                         <TouchableOpacity onPress={()=>{
-                            // alert("Register with us");
+                            Alert.alert("Signing in")
                             props.navigation.navigate('Sign')
                         }}>
                             <Text style={{color:'purple'}}> Signup</Text>

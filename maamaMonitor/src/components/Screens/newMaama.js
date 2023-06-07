@@ -9,12 +9,16 @@ import {
 
 import Field from '../helpers/Field'
 import Btn from '../helpers/Btn';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { setMother } from '../../utils/DbOperations';
+import AuthContext from '../contexts/authContext';
 
 const windowWidth = Dimensions.get('screen').width;
 const windowHeight = Dimensions.get('window').height;
 
-const MaamaInfo = (props) => {
+const MaamaInfo = ({navigation}) => {
+
+    const { user } = useContext(AuthContext);
 
     const [name, setName] = useState('');
     const [age, setAge] = useState('');
@@ -64,7 +68,13 @@ const MaamaInfo = (props) => {
                 <Field placeholder="Next of Kin" onChange={functions.handleNok}/>
                 <Text>Help us capture his number</Text>
                 <Field placeholder="NOK's Phone number" onChange={functions.handleNokPhoneNumber}/>
-                <Btn Width="90%" textColor="white" bgColor="purple" btnLabel="Submit" Press={functions.pressBtn}/>
+                <Btn Width="90%" textColor="white" bgColor="purple" btnLabel="Submit" Press={() => {
+                    setMother(user.email, name, age,lnmp,nok,nokPhoneNumber).then(()=>{
+                        navigation.navigate('Home',{
+                            new: "new maama"
+                        })
+                    })
+                }}/>
             </View>
             <StatusBar barStyle="light-content" />
         </View>

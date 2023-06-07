@@ -7,19 +7,39 @@ import {
 } from 'react-native';
 
 
-import Field from '../helpers/Field'
+import Field from '../helpers/Field';
 import Btn from '../helpers/Btn';
 import { useState } from 'react';
-import { db } from '../../src/Firebase/firebase';
-import { ref } from 'firebase/database';
+// import { db } from '../../src/Firebase/firebase';
+import { getDatabase, ref } from 'firebase/database';
+import { app } from '../../Firebase/Config';
+import { handleSignUp } from '../../utils/functions';
 
 const windowWidth = Dimensions.get('screen').width;
 const windowHeight = Dimensions.get('window').height;
 
 const Sign = (props) => {
 
+    const [ state, setState ] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        pConfirm: "",
+        hasFocus:false
+    });
+
+    const _onBlur = () => {
+        setState({hasFocus: false});
+    }
+
+    const _onFocus = () => {
+        setState({hasFocus: true});
+    }
+
+
+    const db = getDatabase(app);
     const [name, setName]  = useState('');
-    const [username, setUsername] = useState('');
+    // const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
@@ -74,26 +94,22 @@ const Sign = (props) => {
                 <Text>Create your account</Text>
                 <View style={styles.innerView}>
                     <Field placeholder="Your name" onChange={storeTextInput.getName}/>
-                    <Field placeholder="Username" onChange={storeTextInput.getUsername}/>
+                    {/* <Field placeholder="Username" onChange={storeTextInput.getUsername}/> */}
                     <Field placeholder="Email" keyboardType={"email-address"} onChange={storeTextInput.getEmail}/>
-                    <Field placeholder="Phonenumber" onChange={storeTextInput.getEmail}/>
+                    <Field placeholder="Phonenumber" onChange={storeTextInput.getPhone} keyboardType="numeric"/>
                     <Field placeholder="Password" secureTextEntry={true} onChange={storeTextInput.getPassword}/>
                     <Field placeholder="Confirm Password" secureTextEntry={true} onChange={storeTextInput.getPConfirm}/>
 
                     <Btn Width="90%" textColor="white" bgColor="purple" btnLabel="Sign up" Press={() => {
-                        if( name != '' && 
-                            username != '' &&
-                            email != '' &&
-                            phone != '' &&
-                            password != '' &&
-                            pConfirm != ''){
-                                if(password === pConfirm){
-                                    // from here, send data to the database.
-                                    props.navigation.navigate('Login');
-                                }else{
-                                    alert('Your passwords don\'t much ');
-                                }
-                            }
+                        
+                        if(password === pConfirm){
+                            // from here, send data to the database.
+                            // props.navigation.navigate('Login');
+                            // handleSignUp(name, email,phone, password, { navigation } = props, 'Login')
+                            navigation.navigate('Login');
+                        }else{
+                            alert('Your passwords don\'t much ');
+                        }
                     }}/>
 
                     <View style={styles.forget}>
@@ -114,6 +130,9 @@ const Sign = (props) => {
 const styles = StyleSheet.create({
     container:{
         alignItems:'center'
+    },
+    loginHeader:{
+        padding:20,
     },
     innerView:{
         backgroundColor:'white',
