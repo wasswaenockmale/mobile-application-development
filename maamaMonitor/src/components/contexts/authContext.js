@@ -9,17 +9,17 @@ export const AuthProvider = ({children}) =>{
     const [user, setUser] = useState(null);
     const [tokens, setTokens] = useState(null);
     
-    useEffect(()=>{
-        return (
-            onIdTokenChanged(auth, (user) => {
-                if(user){
-                    setUser(user);
-                }else{
-                    setUser(null)
-                }
-            })
-        )
-    }, []);
+    // useEffect(()=>{
+    //     return (
+    //         onIdTokenChanged(auth, (user) => {
+    //             if(user){
+    //                 setUser(user);
+    //             }else{
+    //                 setUser(null)
+    //             }
+    //         })
+    //     )
+    // }, []);
 
     return(
         <AuthContext.Provider value={{

@@ -23,103 +23,103 @@ const windowWidth = Dimensions.get('screen').width;
 const windowHeight = Dimensions.get('window').height;
 
 const MedicalInfo = (props) => {
-    const [isChecked, setIsChecked] = useState(false);
-    const [loc, setLoc] = useState({});
+  const [isChecked, setIsChecked] = useState(false);
+  const [loc, setLoc] = useState({});
 
-    setLoc(getLocation(Location));
+  setLoc(getLocation(Location));
 
-    const services = [
-        {
-            id: 1,
-            service: "first"
-        },
-        {
-            id: 2,
-            service: "first"
-        },
-        {
-            id: 3,
-            service: "first"
-        },
-        {
-            id: 4,
-            service: "first"
-        },
-        {
-            id: 5,
-            service: "first"
-        }
-    ]
-    return(
-        <>
-            <View style={styles.container}>
-                <View style={styles.loginHeader}>
-                    <Text style={styles.text}>Tell us more about the Medical center</Text>
-                </View>
-                <View style={styles.innerView}>
-                    <View>
-                        <Text>Where is the medical center located?</Text>
-                        <Field />
-                   </View>
-                   <View>
-                        <Text>What Meservices does the medical center offer</Text>
-                        <View>
-                            <Opt value={false} optionName="First" handleOption/>
-                            <Opt value={false} optionName="Second" handleOption/>
-                            <Opt value={false} optionName="Third" handleOption/>
-                            <Opt value={false} optionName="Fourth" handleOption/>
-                            <Opt value={false} optionName="Yeah" handleOption/>
-                        </View>
-                   </View>
-                   <View>
-                        <Text>How many medical personels does the Center rely on?</Text>
-                        <Field placeholder="Number of medical personal"/>
-                   </View>
-                   <View>
-                        <Text>Does the medical center have an Ambulance?</Text>
-                        <Checkbox 
-                                style={styles.checkbox}
-                                value={isChecked}
-                                onValueChange={setIsChecked} />
-                   </View>
-                   {isChecked && 
-                   <View>
-                        <Text>Can you provide the number of the Ambulance attendant?</Text>
-                        <Field placeholder="Ambulance attendant's name"/>
-                        <Field placeholder="Ambulance attendant's phonenumber"/>
-                   </View>
-                   }
-
-                   <View>
-                        <Text>Allow us pick your location coordinates</Text>
-                        <Btn btnLabel="Get Coordinates" backgroundColor="purple" width="90%" textColor="white" Press={() => alert('submit button')}/>
-                   </View>
-
-                   <Btn btnLabel="submit" backgroundColor="white" width="90%" textColor="purple" Press={() => alert('Submit button')}/>
-                </View>
+  const services = [
+    {
+      id: 1,
+      service: "first"
+    },
+    {
+      id: 2,
+      service: "first"
+    },
+    {
+      id: 3,
+      service: "first"
+    },
+    {
+      id: 4,
+      service: "first"
+    },
+    {
+      id: 5,
+      service: "first"
+    }
+  ];
+  return (
+    <>
+      <View style={styles.container}>
+        <View style={styles.loginHeader}>
+          <Text style={styles.text}>Tell us more about the Medical center</Text>
+        </View>
+        <View style={styles.innerView}>
+          <View>
+            <Text>Where is the medical center located?</Text>
+            <Field />
+          </View>
+          <View>
+            <Text>What Meservices does the medical center offer</Text>
+            <View>
+              <Opt value={false} optionName="First" handleOption />
+              <Opt value={false} optionName="Second" handleOption />
+              <Opt value={false} optionName="Third" handleOption />
+              <Opt value={false} optionName="Fourth" handleOption />
+              <Opt value={false} optionName="Yeah" handleOption />
             </View>
-        </>
-    )
+          </View>
+          <View>
+            <Text>How many medical personels does the Center rely on?</Text>
+            <Field placeholder="Number of medical personal" />
+          </View>
+          <View>
+            <Text>Does the medical center have an Ambulance?</Text>
+            <Checkbox
+              style={styles.checkbox}
+              value={isChecked}
+              onValueChange={setIsChecked} />
+          </View>
+          {isChecked &&
+            <View>
+              <Text>Can you provide the number of the Ambulance attendant?</Text>
+              <Field placeholder="Ambulance attendant's name" />
+              <Field placeholder="Ambulance attendant's phonenumber" />
+            </View>
+          }
+
+          <View>
+            <Text>Allow us pick your location coordinates</Text>
+            <Btn btnLabel="Get Coordinates" backgroundColor="purple" width="90%" textColor="white" Press={() => alert('submit button')} />
+          </View>
+
+          <Btn btnLabel="submit" backgroundColor="white" width="90%" textColor="purple" Press={() => alert('Submit button')} />
+        </View>
+      </View>
+    </>
+  )
 }
 
 const styles = StyleSheet.create({
-    container:{
-        alignItems:'center'
-    },
-    innerView:{
-        backgroundColor:'white',
-        height:windowHeight,
-        width:windowWidth,
-        paddingTop:100,
-        borderTopLeftRadius:50,
-        borderTopRightRadius:50,
-        alignItems:'center'
-    },
-    text:{
-        fontSize:20,
-        marginVertical:10,
-        color:'purple'
-    },
+  container: {
+    alignItems: 'center'
+  },
+  innerView: {
+    backgroundColor: 'white',
+    height: windowHeight,
+    width: windowWidth,
+    paddingTop: 100,
+    borderTopLeftRadius: 50,
+    borderTopRightRadius: 50,
+    alignItems: 'center'
+  },
+  text: {
+    fontSize: 20,
+    marginVertical: 10,
+    color: 'purple'
+  },
 });
 
 

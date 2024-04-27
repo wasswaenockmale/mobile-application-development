@@ -7,12 +7,13 @@ const History = (props) => {
 
     // Pick data from the database about a patient's medical history.
     const tableData = {
-        tableHead: ['Head', 'Head', 'Head', 'Head'],
+        tableHead: ['Date', 'DiaStoric', 'Systoric', 'Rating'],
         tabledb: [
-            ['1', '2', '3', '4'],
-            ['a', 'b', 'c', 'd'],
-            ['1', '2', '3', '456\n789'],
-            ['a', 'b', 'c', 'd']
+            ['12/02/22', '120', '84', 'Normal'],
+            ['12/02/22', '120', '84', 'Normal'],
+            ['12/02/22', '120', '84', 'Normal'],
+            ['12/02/22', '120', '84', 'Normal'],
+            ['12/02/22', '120', '84', 'Normal'],
         ]
     }
     return(
