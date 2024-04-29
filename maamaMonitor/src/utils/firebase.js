@@ -6,7 +6,6 @@ function signUp(email, password) {
     const data = createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        // console.log("This is the user: ",user)
         return user;
       })
       .catch((error) => {
@@ -35,9 +34,7 @@ function signUp(email, password) {
 async function login(email, password) {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-    console.log('Login successful. User:', user);
-    
+    const user = userCredential.user;    
     return {
       data: user,
       error: null

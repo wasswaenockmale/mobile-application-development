@@ -19,7 +19,7 @@ const windowHeight = Dimensions.get('window').height;
 
 const Login = (props) => {
     
-  const {user, setUser, setTokens} = useContext(AuthContent);
+  const {user, setUser, setTokens, setIsLoggedIn} = useContext(AuthContent);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -42,6 +42,18 @@ const Login = (props) => {
           <Text style={{ fontSize: 20, color: 'purple', marginTop: 10 }}>Login to your account</Text>
           <Field placeholder="Email" keyboardType={"email-address"} onChange={handleEmail} />
           <Field placeholder="Password" secureTextEntry={true} onChange={handlePassword} />
+          <Btn Width="90%" textColor="white" bgColor="purple" btnLabel="Login" Press={async () => {
+            if (email && password) {
+              const response = await login(email, password);
+              if (response.data) {
+                setIsLoggedIn(true);
+                setUser(response.data);
+              }
+            } else {
+              alert('One of the fields are empty');
+            }
+          }} />
+
           <TouchableOpacity
             style={
               {
@@ -53,21 +65,6 @@ const Login = (props) => {
           >
             <Text style={{ color: 'purple' }}>Forgot password ?</Text>
           </TouchableOpacity>
-          <Btn Width="90%" textColor="white" bgColor="purple" btnLabel="Login" Press={() => {
-            if (email && password) {
-              const response = login(email, password);
-              if (response.data) {
-                // console.log(response.data);
-                setUser(response.data);
-                navigation.navigate('Home')
-              }
-              // console.log(user)
-              // handleLogin(email, password, navigation, 'Home' );
-            } else {
-              alert('One of the fields are empty');
-            }
-          }} />
-
           <View style={styles.forget}>
             <Text>Don't have an account ?</Text>
             <TouchableOpacity onPress={() => {

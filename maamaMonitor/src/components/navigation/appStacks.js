@@ -1,3 +1,4 @@
+import React, {useContext} from 'react';
 import Home from "../Screens/Home";
 import Login from "../Screens/Login";
 import Sign from "../Screens/Sign";
@@ -11,9 +12,10 @@ import BP from "../Screens/BP";
 import MoreMama from "../Screens/MoreInfo";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import WelcomeScreen from "../Screens/WelcomeScreen";
+import AuthContext from "../contexts/authContext";
 
 const Stack = createNativeStackNavigator()
-export default function AppStacks(){
+export default function AppStacks() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name='Home' component={Home} />
