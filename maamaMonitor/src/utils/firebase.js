@@ -1,4 +1,4 @@
-import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
+import {getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword} from "firebase/auth";
 
 const auth = getAuth();
 function signUp(email, password) {
@@ -6,6 +6,7 @@ function signUp(email, password) {
     const data = createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
+        // console.log("This is the user: ",user)
         return user;
       })
       .catch((error) => {
@@ -31,33 +32,21 @@ function signUp(email, password) {
   }
 }
 
-function login(email, password) {
+async function login(email, password) {
   try {
-    const data = signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
+    const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
-    return user;
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
-    if (data) {
-      return {
-        data,
-        error
-      }
-    } else {
-      return {
-        data: null, 
-        error: 'failed to login'
-      }
-    }
+    console.log('Login successful. User:', user);
+    
+    return {
+      data: user,
+      error: null
+    };
   } catch (error) {
     return {
       data: null,
-      error
-    }
+      error: error.message // Return error message instead of error object
+    };
   }
 }
 

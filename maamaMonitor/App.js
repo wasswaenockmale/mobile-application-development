@@ -1,14 +1,17 @@
-
+import { useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { AuthProvider } from './src/components/contexts/authContext';
-import AppStacks from './src/components/navigation/appStacks';
+import AuthContext, { AuthProvider } from './src/components/contexts/authContext';
+import AppStacks, { UnAuthorized } from './src/components/navigation/appStacks';
 
 
 export default function App() {
+  const {isLoggedIn} = useContext(AuthContext);
   return (
     <AuthProvider>
       <NavigationContainer>
-        <AppStacks />
+        {
+          isLoggedIn ? <AppStacks /> : <UnAuthorized />
+        }
       </NavigationContainer>
     </AuthProvider>
     

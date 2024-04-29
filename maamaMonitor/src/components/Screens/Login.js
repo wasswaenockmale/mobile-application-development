@@ -11,7 +11,6 @@ import Field from '../helpers/Field'
 import Btn from '../helpers/Btn';
 import React, {useContext, useState} from 'react';
 import AuthContent from '../contexts/authContext';
-import {handleLogin} from '../../utils/functions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { login } from '../../utils/firebase';
 

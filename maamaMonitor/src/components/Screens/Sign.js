@@ -101,6 +101,7 @@ const Sign = (props) => {
         <Btn Width="90%" textColor="white" bgColor="purple" btnLabel="Sign up" Press={() => {
           if (password === pConfirm) {
             const response = signUp(email, password);
+            console.log(response)
             if (response.data) {
               alert('Successfully signed up')
               navigation.navigate('Login');
