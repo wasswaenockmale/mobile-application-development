@@ -13,13 +13,14 @@ import React, {useContext, useState} from 'react';
 import AuthContent from '../contexts/authContext';
 import {handleLogin} from '../../utils/functions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { login } from '../../utils/firebase';
 
 const windowWidth = Dimensions.get('screen').width;
 const windowHeight = Dimensions.get('window').height;
 
 const Login = (props) => {
     
-  const { user, setUser, setTokens } = useContext(AuthContent);
+  const {user, setUser, setTokens} = useContext(AuthContent);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -55,12 +56,13 @@ const Login = (props) => {
           </TouchableOpacity>
           <Btn Width="90%" textColor="white" bgColor="purple" btnLabel="Login" Press={() => {
             if (email && password) {
-              // auth
-              // setTokens(AsyncStorage.getItem('userToken'));
-              setUser({ email, password });
-              const { navigation } = props;
+              const response = login(email, password);
+              if (response.data) {
+                // console.log(response.data);
+                setUser(response.data);
+                navigation.navigate('Home')
+              }
               // console.log(user)
-              navigation.navigate('Home')
               // handleLogin(email, password, navigation, 'Home' );
             } else {
               alert('One of the fields are empty');

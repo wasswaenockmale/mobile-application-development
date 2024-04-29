@@ -1,4 +1,4 @@
-import React, { FC, useCallback } from "react";
+import React, {useCallback} from "react";
 import {
   FlatList,
   Modal,
@@ -6,34 +6,36 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  TouchableWithoutFeedback,
+  View
 } from "react-native";
-import {Device} from "react-native-ble-plx";
 
 const DeviceModalListItem = (props) => {
-  const { item, connectToPeripheral, closeModal } = props;
+  const {item, connectToPeripheral, closeModal} = props;
 
   const connectAndCloseModal = useCallback(() => {
-    connectToPeripheral(item.item);
+    connectToPeripheral(item);
     closeModal();
-  }, [closeModal, connectToPeripheral, item.item]);
+  }, [closeModal, connectToPeripheral, item]);
 
   return (
     <TouchableOpacity
       onPress={connectAndCloseModal}
-      style={modalStyle.ctaButton}
+      style={styles.ctaButton}
     >
-      <Text style={modalStyle.ctaButtonText}>{item.item.name}</Text>
+      <Text style={styles.ctaButtonText}>{item.id}</Text>
+      <Text>{item.name}</Text>
     </TouchableOpacity>
   );
 };
 
 const DeviceModal = (props) => {
   const { devices, visible, connectToPeripheral, closeModal } = props;
-
   const renderDeviceModalListItem = useCallback(
-    (item) => {
+    ({item}) => {
       return (
         <DeviceModalListItem
+          key={item.id}
           item={item}
           connectToPeripheral={connectToPeripheral}
           closeModal={closeModal}
@@ -45,26 +47,32 @@ const DeviceModal = (props) => {
 
   return (
     <Modal
-      style={modalStyle.modalContainer}
+      style={styles.modalContainer}
       animationType="slide"
       transparent={false}
       visible={visible}
     >
-      <SafeAreaView style={modalStyle.modalTitle}>
-        <Text style={modalStyle.modalTitleText}>
-          Tap on a device to connect
-        </Text>
-        <FlatList
-          contentContainerStyle={modalStyle.modalFlatlistContiner}
-          data={devices}
-          renderItem={renderDeviceModalListItem}
-        />
-      </SafeAreaView>
+      <TouchableWithoutFeedback onPress={closeModal}>
+        <SafeAreaView style={styles.modalTitle}>
+          <TouchableWithoutFeedback>
+            <View>
+              <Text style={styles.modalTitleText}>
+                Tap on a device to connect
+              </Text>
+              <FlatList
+                contentContainerStyle={styles.modalFlatlistContiner}
+                data={devices}
+                renderItem={renderDeviceModalListItem}
+              />
+            </View>
+          </TouchableWithoutFeedback>
+        </SafeAreaView>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 }
 
-const modalStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     backgroundColor: "#f2f2f2",
@@ -93,7 +101,7 @@ const modalStyles = StyleSheet.create({
     textAlign: "center",
   },
   ctaButton: {
-    backgroundColor: "#FF6060",
+    backgroundColor: "purple",
     justifyContent: "center",
     alignItems: "center",
     height: 50,

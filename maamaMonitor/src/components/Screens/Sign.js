@@ -15,6 +15,7 @@ import {getDatabase, ref} from 'firebase/database';
 import {app} from '../../Firebase/Config';
 import {handleSignUp} from '../../utils/functions';
 import { useNavigation } from '@react-navigation/native';
+import { signUp } from '../../utils/firebase';
 
 
 const Sign = (props) => {
@@ -99,10 +100,13 @@ const Sign = (props) => {
 
         <Btn Width="90%" textColor="white" bgColor="purple" btnLabel="Sign up" Press={() => {
           if (password === pConfirm) {
-            // from here, send data to the database.
-            // props.navigation.navigate('Login');
-            // handleSignUp(name, email,phone, password, { navigation } = props, 'Login')
-            navigation.navigate('Login');
+            const response = signUp(email, password);
+            if (response.data) {
+              alert('Successfully signed up')
+              navigation.navigate('Login');
+            } else {
+              alert('Error using sign up')
+            }
           } else {
             alert('Your passwords don\'t much ');
           }

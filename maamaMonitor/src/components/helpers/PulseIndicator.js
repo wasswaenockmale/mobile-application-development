@@ -40,9 +40,9 @@ export const PulseIndicator = () => {
 
   return (
     <Canvas style={{ height: 300, width: 300 }}>
-      <Circle cx={150} cy={150} r={50} opacity={1} color="#FF6060"></Circle>
-      <Circle cx={150} cy={150} r={scale} opacity={opacity} color="#FF6060" />
-      <Circle cx={150} cy={150} r={scale2} opacity={opacity2} color="#FF6060" />
+      <Circle cx={150} cy={150} r={50} opacity={1} color="purple"></Circle>
+      <Circle cx={150} cy={150} r={scale} opacity={opacity} color="purple" />
+      <Circle cx={150} cy={150} r={scale2} opacity={opacity2} color="purple" />
       <Image
         image={expo}
         fit="contain"

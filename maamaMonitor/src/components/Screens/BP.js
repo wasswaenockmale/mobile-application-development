@@ -1,9 +1,10 @@
 import {AntDesign} from "@expo/vector-icons";
-import {StatusBar, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Alert, StatusBar, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {useState} from "react";
 import {useNavigation} from "@react-navigation/native";
 import useBLE from "../../hooks/useBLE";
-
+import {PulseIndicator} from '../helpers/PulseIndicator';
+import DeviceModal from '../helpers/DeviceConnectionModal'
 
 // use this command eas build --profile development --platform all
 export default function BP(props) {
@@ -18,12 +19,20 @@ export default function BP(props) {
     disconnectFromDevice
   } = useBLE();
   const res = '';
-  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const scanForDevices = async () => {
     const isPermissionEnabled = await requestPermissions();
     if (isPermissionEnabled) {
       scanForPeripherals();
+    } else {
+      Alert.alert('Bluetooth connection', 'Turn on your bluetooth', [
+        {
+          text: 'ok',
+          onPress: () => { },
+          style: 'cancel'
+        }
+      ], { cancelable: true, onDismiss: () => { } });
     }
   };
 
@@ -39,71 +48,97 @@ export default function BP(props) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <AntDesign name="left" size={32} color='white' onPress={() => {
-          props.navigation.navigate('Home');
-        }} />
-        <Text style={styles.headerText}>Take your blood pressure.</Text>
-        <TouchableOpacity onPress={() => props.navigation.navigate('History', {
+        <AntDesign
+          name="left"
+          size={20}
+          color='white'
+          onPress={() => {
+          navigation.goBack();
+          }}
+        />
+        <Text style={styles.headerText}>Take Your Blood Pressure</Text>
+        <TouchableOpacity onPress={() => navigation.navigate('History', {
           screenName: 'BP'
-        })} style={styles.bpHistoryBtn}>
-          <Text style={{ color: 'white' }}>BP history</Text>
+        })}
+          style={styles.bpHistoryBtn}>
+          <Text style={{color: 'white'}}>BP history</Text>
         </TouchableOpacity>
       </View>
-      <View style={styles.content}>
-        <Text style={styles.contentText}>Make sure your bluetooth is turned on for the application to be able to read your BP</Text>
-        <TouchableOpacity style={styles.takeBP} onPress={() => {
-          alert("Machine not connected")
-        }}>
-          <Text style={styles.BPBtnText}>Take BP</Text>
-        </TouchableOpacity>
-        <View style={styles.BPDisplay}>
-          {
-            isChecking ? <Waiting /> :
-              <View style={styles.BPView}>
-                {
-                  bloodPressure.isHigh ? <Text style={styles.highBP}>{res}</Text> : <Text style={styles.lowBP}>{res}</Text>
-                }
-              </View>
-          }
-        </View>
+      <View style={styles.heartRateTitleWrapper}>
+        {connectedDevice ? (
+          <>
+            <PulseIndicator />
+            <Text style={styles.heartRateTitleText}>Your Blood Pressure Is:</Text>
+            <Text style={styles.heartRateText}>{bloodPressure} Hg/ml</Text>
+          </>
+        ) : (
+          <Text style={styles.heartRateTitleText}>
+            Please Connect to a BP Monitor
+          </Text>
+        )}
       </View>
+
+      <TouchableOpacity
+        onPress={connectedDevice ? disconnectFromDevice : openModal}
+        style={styles.ctaButton}
+      >
+        <Text style={styles.ctaButtonText}>
+          {connectedDevice ? "Disconnect" : "Connect"}
+        </Text>
+      </TouchableOpacity>
+      <DeviceModal
+        closeModal={hideModal}
+        visible={isModalVisible}
+        connectToPeripheral={connectToDevice}
+        devices={allDevices}
+      />
       <StatusBar barStyle="light-content" />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#f2f2f2",
+  },
   header: {
-    flexDirection: "row",
-    alignItems: "center",
-    padding: 5,
     backgroundColor: 'purple',
-    justifyContent: "space-between"
+    flexDirection: 'row',
+    gap: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 10, 
+    alignItems: 'center',
+    justifyContent:'space-between'
   },
-  headerText: {
-    color: 'white'
-  },
-
-  bpHistoryBtn: {
-    borderWidth: 1,
-    borderColor: 'white',
-    padding: 5,
-    borderRadius: 5
-  },
-
-  content: {
-        
-    flexDirection: 'column',
-    padding: 10,
+  heartRateTitleWrapper: {
+    flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
-
-  takeBP: {
-    borderRadius: 5,
-    borderWidth: 1,
-    borderColor: 'purple',
-    padding: 5,
-    margin: 20,
-  }
+  heartRateTitleText: {
+    fontSize: 30,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginHorizontal: 20,
+    color: "black",
+  },
+  heartRateText: {
+    fontSize: 25,
+    marginTop: 15,
+  },
+  ctaButton: {
+    backgroundColor: "purple",
+    justifyContent: "center",
+    alignItems: "center",
+    height: 50,
+    marginHorizontal: 20,
+    marginBottom: 5,
+    borderRadius: 8,
+  },
+  ctaButtonText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "white",
+  },
 });

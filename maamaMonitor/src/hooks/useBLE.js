@@ -72,23 +72,30 @@ function useBLE() {
   }
 
   const isDuplicateDevice = (devices, nextDevice) =>
-    devices.findIndex((device) => nextDevice.id === device.id) > -1;
+    devices.findIndex((device_) => nextDevice.id === device_.id) > -1;
 
   const scanForPeripherals = () => {
     bleManager.startDeviceScan(null, null, (error, device) => {
+      // console.log('What happens now!! ');
       if (error) {
-        console.log(error);
+        console.log("Error scanning for peripherals:", error);
       }
-      if (device && device.name?.includes('CorSense')) {
+      if (device) {
+        console.log("Discovered device:", device.name, device.id);
+        // if (device.name?.includes('CorSense')) {
+        // console.log('Comes upto here: ', device.id)
         setAllDevices((prevState) => {
-          if (isDuplicateDevice(prevState, device)) {
+          const isDup = isDuplicateDevice(prevState, device);
+          // console.log('Device is dup', isDup);
+          if (!isDuplicateDevice(prevState, device)) {
             return [...prevState, device]
           };
 
           return prevState
         })
+        // }
       }
-    })
+    });
   };
 
   const connectToDevice = async (device) => {
